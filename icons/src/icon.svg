@@ -1,0 +1,8 @@
+<svg width="128" height="128" viewBox="0 0 128 128" xmlns="http://www.w3.org/2000/svg">
+  <rect width="128" height="128" rx="28" fill="#6d28d9"/>
+  <!-- 受信箱（トレイ）本体 -->
+  <path d="M24 56 L44 56 L54 74 L74 74 L84 56 L104 56 L104 96 A6 6 0 0 1 98 102 L30 102 A6 6 0 0 1 24 96 Z" fill="#ffffff"/>
+  <!-- 投げ込まれるページ（矢印） -->
+  <rect x="54" y="18" width="20" height="30" rx="3" fill="#ffffff"/>
+  <path d="M48 40 L64 58 L80 40" stroke="#ffffff" stroke-width="7" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

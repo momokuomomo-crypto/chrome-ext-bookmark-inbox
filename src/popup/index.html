@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <title>ブックマーク受信箱</title>
+    <link rel="stylesheet" href="popup.css" />
+  </head>
+  <body>
+    <h1>ブックマーク受信箱</h1>
+
+    <section id="save-section">
+      <p id="tab-blocked-message" class="hint" hidden>
+        このページ（chrome://等）は保存できません。
+      </p>
+      <div id="tab-preview" hidden>
+        <p id="tab-title" class="tab-title"></p>
+        <p id="tab-url" class="tab-url"></p>
+        <button id="save-button">現在のページを保存</button>
+      </div>
+      <p id="save-message" class="message" hidden></p>
+    </section>
+
+    <section id="pending-section">
+      <h2>未処理 <span id="pending-count">0</span>件</h2>
+      <ul id="pending-list" class="entry-list"></ul>
+      <p id="pending-empty" class="empty-state" hidden>未処理のページはありません。</p>
+    </section>
+
+    <section id="processed-section">
+      <button id="processed-toggle" class="toggle-button" aria-expanded="false">
+        処理済み <span id="processed-count">0</span>件を表示
+      </button>
+      <ul id="processed-list" class="entry-list" hidden></ul>
+      <p id="processed-empty" class="empty-state" hidden>処理済みのページはありません。</p>
+    </section>
+
+    <script type="module" src="popup.ts"></script>
+  </body>
+</html>
