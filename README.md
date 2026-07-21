@@ -54,6 +54,17 @@ tests/
   integration/           # background.tsの統合テスト（sinon-chrome）
 ```
 
+## 収益化方法
+
+無料50件まで。Pro版でタグ・同期を提供する。
+
+## 将来の拡張案
+
+- Chromeブックマークへの移動
+- リンク切れ検査
+
+出典：[稟議書_Chrome拡張機能アイデア.md（項目3）](https://github.com/momokuomomo-crypto/ai-council-output/blob/master/chrome-extension-ideas/稟議書_Chrome拡張機能アイデア.md)
+
 ## 開発の経緯
 
 [ai-build-council](https://github.com/momokuomomo-crypto/ai-build-council)
