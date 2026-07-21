@@ -104,7 +104,18 @@ let refreshGeneration = 0;
 
 async function refresh(): Promise<void> {
   const generation = ++refreshGeneration;
-  const entries = await listEntries();
+  let entries: InboxEntry[];
+  try {
+    entries = await listEntries();
+  } catch (error) {
+    // schemaVersion不整合等でlistEntries()が例外を投げた場合、無言で
+    // 一覧が空表示のまま固まらないよう、ユーザーに見える形でエラーを
+    // 表示する（実Chromeスモークテスト監査で発見：この関数がtry/catch
+    // 無しで直接listEntries()を呼んでいた）。
+    console.error("listEntries failed", error);
+    showSaveMessage("一覧の取得に失敗しました。拡張機能を再読み込みしてください。", "error");
+    return;
+  }
   if (generation !== refreshGeneration) return;
 
   const pending = entries.filter((entry) => entry.status === "pending");
@@ -167,7 +178,13 @@ function registerListDelegation(listEl: HTMLUListElement): void {
     if (!id || !action) return;
 
     void (async () => {
-      const entries = await listEntries();
+      let entries: InboxEntry[];
+      try {
+        entries = await listEntries();
+      } catch (error) {
+        console.error("listEntries failed", error);
+        return;
+      }
       const entry = entries.find((candidate) => candidate.id === id);
 
       switch (action) {

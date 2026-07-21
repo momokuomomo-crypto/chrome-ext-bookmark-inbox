@@ -175,6 +175,19 @@ describe("popup: 一覧の操作（イベント委譲）", () => {
   });
 });
 
+describe("popup: 未知のschemaVersion（監査で発見：listEntries()のtry/catch欠如）", () => {
+  it("listEntries()が例外を投げても無言で固まらず、エラーメッセージを表示する", async () => {
+    chrome.tabs.query.resolves([{ id: 1, title: "t", url: "https://example.com/" }]);
+    await chrome.storage.local.set({ inboxState: { schemaVersion: 2, entries: [] } });
+
+    await loadPopupFresh();
+
+    const saveMessageEl = document.getElementById("save-message") as HTMLElement;
+    expect(saveMessageEl.hidden).toBe(false);
+    expect(saveMessageEl.textContent).toContain("失敗");
+  });
+});
+
 describe("popup: storage.onChangedによる自動再描画", () => {
   it("inboxState以外のキー変更では再描画しない", async () => {
     chrome.tabs.query.resolves([{ id: 1, title: "t", url: "https://example.com/" }]);
